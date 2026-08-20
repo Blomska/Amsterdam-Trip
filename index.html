@@ -1,13 +1,399 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amsterdam Trip 🚲</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .animate-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#f8f9fa]">
+    <header class="bg-gradient-to-r from-orange-600 to-amber-500 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 pt-8 pb-4">
+            <div class="flex justify-between items-end mb-4">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-1">Amsterdam Trip 🚲</h1>
+                    <p class="text-orange-100 font-medium flex items-center gap-2 opacity-90 text-sm md:text-base">
+                        Martina, Jürgen, Sabina & Aule <span class="hidden md:inline mx-1">|</span> <span class="block md:inline">18.09. – 20.09.2026</span>
+                    </p>
+                </div>
+                <div class="hidden md:flex bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl text-sm font-semibold">
+                    48h Explorer
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 flex gap-2 overflow-x-auto pb-4 no-scrollbar">
+            <button onclick="showTab('home')" class="tab-btn active flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 whitespace-nowrap bg-white text-orange-600 shadow-sm" data-tab="home">
+                <i class="fas fa-compass"></i> Startseite
+            </button>
+            <button onclick="showTab('itinerary')" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 whitespace-nowrap bg-white/10 text-orange-50 hover:bg-white/20" data-tab="itinerary">
+                <i class="fas fa-calendar"></i> Tages-Etappen
+            </button>
+            <button onclick="showTab('packing')" class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 whitespace-nowrap bg-white/10 text-orange-50 hover:bg-white/20" data-tab="packing">
+                <i class="fas fa-check-square"></i> Packliste
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-8 pb-12">
+        <!-- HOME TAB -->
+        <div id="home" class="tab-content animate-in space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-bl-full -z-10 opacity-50"></div>
+                <h2 class="text-2xl font-bold mb-3 text-slate-800">Welkom in Amsterdam! 🌷</h2>
+                <p class="text-slate-600 leading-relaxed text-lg mb-6">
+                    Euer 48-Stunden-Trip steht an. Der Fokus: Authentische Atmosphäre, coole Viertel und leckeres Essen (Budget ~30€ p.P.).
+                </p>
+                
+                <div class="bg-orange-50 border border-orange-100 rounded-2xl p-4 flex gap-4 items-start">
+                    <div class="bg-orange-100 p-3 rounded-full text-orange-600 shrink-0">
+                        <i class="fas fa-map-pin text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-orange-900">Euer Basecamp: Tolhuisweg</h3>
+                        <p class="text-orange-800/80 text-sm mt-1 leading-relaxed">
+                            Ihr habt die absolute Top-Lage! Ihr seid mitten im coolen Industrie-Viertel <strong>Noord</strong> (Skatecafe, NDSM-Werf), kommt aber mit der kostenlosen, 24/7 fahrenden Fähre in wenigen Minuten ins Zentrum. Perfekt!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gradient-to-br from-sky-50 to-blue-50 rounded-3xl p-6 shadow-sm border border-sky-100">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="font-bold text-sky-900 text-lg">Reisewetter</h3>
+                            <p class="text-sky-700/70 text-sm">Prognose für Mitte September</p>
+                        </div>
+                        <div class="bg-white p-2 rounded-xl shadow-sm text-sky-500">
+                            <i class="fas fa-cloud-rain text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-end gap-3 mb-6">
+                        <span class="text-5xl font-black text-sky-900 tracking-tighter">16°</span>
+                        <span class="text-sky-700 font-medium mb-1.5">Ø Tagestemperatur</span>
+                    </div>
+                    
+                    <div class="space-y-3 bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white">
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center gap-2 text-sm font-medium text-sky-900"><i class="fas fa-sun text-amber-500"></i> Sonne & Wolken</span>
+                            <span class="text-sm text-sky-700">Oft im Mix</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center gap-2 text-sm font-medium text-sky-900"><i class="fas fa-wind text-slate-400"></i> Frische Brise</span>
+                            <span class="text-sm text-sky-700">Küstennähe</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center gap-2 text-sm font-medium text-sky-900"><i class="fas fa-umbrella text-blue-400"></i> Schauer</span>
+                            <span class="text-sm text-sky-700">Kurz möglich</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-rows-3 gap-4">
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="bg-rose-50 text-rose-500 p-3 rounded-xl"><i class="fas fa-info-circle text-xl"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Pin Only (Wichtig!)</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Bargeld wird in Cafés oft nicht akzeptiert. Bankkarte mitnehmen.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="bg-emerald-50 text-emerald-500 p-3 rounded-xl"><i class="fas fa-clock text-xl"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Fahrrad-Regeln</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Rote Wege gehören den Radlern. Vor dem Überqueren gut schauen!</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="bg-indigo-50 text-indigo-500 p-3 rounded-xl"><i class="fas fa-train text-xl"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">ÖPNV Check-In</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">In der Tram einfach mit der Kreditkarte am Lesegerät ein/auschecken.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ITINERARY TAB -->
+        <div id="itinerary" class="tab-content animate-in space-y-10 hidden">
+            <div id="itinerary-container"></div>
+        </div>
+
+        <!-- PACKING TAB -->
+        <div id="packing" class="tab-content animate-in hidden max-w-2xl mx-auto">
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 mb-8 text-center">
+                <h2 class="text-xl font-bold text-slate-800 mb-2">Euer Pack-Fortschritt</h2>
+                <p class="text-sm text-slate-500 mb-6">Nichts vergessen für den Kurztrip?</p>
+                
+                <div class="relative pt-1">
+                    <div class="flex mb-2 items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold inline-block py-1 px-3 uppercase rounded-full text-orange-600 bg-orange-100">
+                                Status
+                            </span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-3xl font-black inline-block text-orange-600" id="progress-percent">0%</span>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden h-3 mb-4 text-xs flex rounded-full bg-orange-100">
+                        <div id="progress-bar" style="width: 0%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500 transition-all duration-700 ease-out"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="packing-container" class="space-y-6"></div>
+        </div>
+    </main>
+
+    <script>
+        const packingList = [
+            { 
+                id: '1', 
+                category: 'Dokumente & Finanzen', 
+                items: [
+                    { text: 'Personalausweis', checked: false },
+                    { text: 'Zugtickets (Handy/Ausdruck)', checked: false },
+                    { text: 'AirBnB Adresse & Code (Tolhuisweg)', checked: false },
+                    { text: 'Bankkarte (PIN!)', checked: false }
+                ]
+            },
+            { 
+                id: '2', 
+                category: 'Kleidung (Zwiebellook)', 
+                items: [
+                    { text: 'Regenjacke / Windbreaker', checked: false },
+                    { text: 'Bequeme Sneaker (für viele Kilometer)', checked: false },
+                    { text: 'Jeans / Hose für Frühstück', checked: false },
+                    { text: 'Socken & Unterwäsche', checked: false },
+                    { text: 'Leichte Pullover/Hoodie', checked: false }
+                ]
+            },
+            { 
+                id: '3', 
+                category: 'Hygiene & Gesundheit', 
+                items: [
+                    { text: 'Kulturbeutel (Zahnbürste etc.)', checked: false },
+                    { text: 'Deo & Duschgel', checked: false },
+                    { text: 'Pflaster (für Blasen)', checked: false },
+                    { text: 'Kopfschmerztabletten', checked: false }
+                ]
+            },
+            { 
+                id: '4', 
+                category: 'Technik & Sonstiges', 
+                items: [
+                    { text: 'Smartphone & Ladekabel', checked: false },
+                    { text: 'Powerbank (sehr wichtig!)', checked: false },
+                    { text: 'Kleine Umhängetasche / Daypack', checked: false },
+                    { text: 'Kamera / extra GoPro?', checked: false }
+                ]
+            }
+        ];
+
+        const itineraryData = [
+            {
+                day: "Freitag, 18.09.",
+                title: "Ankunft & Amsterdam Noord",
+                dateColor: "text-amber-600",
+                bgColor: "bg-amber-50",
+                events: [
+                    { time: "12:30", type: "transport", icon: "fas fa-train", title: "Ankunft Amsterdam Centraal", desc: "Ankunft mit dem Zug. Erste Eindrücke am prächtigen Bahnhof sammeln." },
+                    { time: "12:45", type: "transport", icon: "fas fa-ship", title: "Kostenlose Fähre (Buiksloterweg)", desc: "Geht auf die Rückseite des Bahnhofs und nehmt die F3-Fähre. Sie ist kostenlos und fährt 24/7!" },
+                    { time: "13:00", type: "accommodation", icon: "fas fa-home", title: "AirBnB Check-In", desc: "Tolhuisweg! Perfekte Lage in Noord. Koffer abstellen und kurz frisch machen." },
+                    { time: "14:00", type: "food", icon: "fas fa-utensils", title: "Lunch: Café de Ceuvel", desc: "Super cooles, alternatives Café am Wasser in Noord. Entspannte Atmosphäre, alte Hausboote und grüne Oase." },
+                    { time: "16:00", type: "activity", icon: "fas fa-ship", title: "Grachtenfahrt mal anders", desc: "Zurück in die City: Mietet euch ein kleines, elektrisches Boot (z.B. Mokumboot) – viel privatere Experience!" },
+                    { time: "19:30", type: "food", icon: "fas fa-utensils", title: "Dinner: Foodhallen (Oud-West)", desc: "Ein alter Tram-Depot voller Streetfood-Stände. Für 30€ p.P. bekommt ihr hier locker satt und happy!" },
+                    { time: "22:00", type: "activity", icon: "fas fa-coffee", title: "Drinks im Bruin Café", desc: "Absacker in einer typischen Kneipe (z.B. Café Chris im Jordaan-Viertel), bevor es mit der Nacht losgeht." }
+                ]
+            },
+            {
+                day: "Samstag, 19.09.",
+                title: "Coole Viertel & Industrie-Charme",
+                dateColor: "text-orange-600",
+                bgColor: "bg-orange-50",
+                events: [
+                    { time: "10:00", type: "food", icon: "fas fa-coffee", title: "Frühstück: THT (Tolhuistuin)", desc: "Direkt bei euch um die Ecke! Tolles Café mit Blick aufs Wasser und entspanntem Vibe." },
+                    { time: "11:30", type: "activity", icon: "fas fa-camera", title: "De Negen Straatjes (Die 9 Straßen)", desc: "Mit der Fähre in die City: Bummeln durch die schönsten kleinen Grachtenstraßen mit Vintage-Läden." },
+                    { time: "14:00", type: "food", icon: "fas fa-utensils", title: "Lunch: Fabel Friet & Snack", desc: "Holt euch die legendären Pommes bei Fabel Friet (günstig & extrem lecker) auf die Hand und geht weiter." },
+                    { time: "15:30", type: "activity", icon: "fas fa-map-pin", title: "NDSM-Werf erkunden", desc: "Nehmt die Fähre zur NDSM-Werf in Noord. Riesige Streetart, alte Industriehallen und ein unfassbares Kunstviertel!" },
+                    { time: "19:00", type: "food", icon: "fas fa-utensils", title: "Dinner: Skatecafe (Noord)", desc: "Ein Restaurant in einer alten Lagerhalle mit einer echten Halfpipe in der Mitte! Fantastisches Erlebnis." }
+                ]
+            },
+            {
+                day: "Sonntag, 20.09.",
+                title: "Frischer Start & Heimreise",
+                dateColor: "text-rose-600",
+                bgColor: "bg-rose-50",
+                events: [
+                    { time: "09:00", type: "food", icon: "fas fa-coffee", title: "Frühstück: Pancakes Amsterdam", desc: "Nahe des Bahnhofs (Aan 't IJ). Leckere holländische Pfannkuchen mit tollem Ausblick aufs Wasser." },
+                    { time: "10:30", type: "accommodation", icon: "fas fa-home", title: "Check-Out & Gepäck", desc: "AirBnB Check-Out am Tolhuisweg und mit der Fähre rüber zum Bahnhof." },
+                    { time: "11:00", type: "activity", icon: "fas fa-camera", title: "Letzte Souvenirs & Käse", desc: "Spaziergang am Wasser. Tipp für authentischen Käse: 'De Kaaskamer' (echtes Fachgeschäft beim Bahnhof)." },
+                    { time: "12:30", type: "transport", icon: "fas fa-train", title: "Rückfahrt", desc: "Der Zug fährt ab Amsterdam Centraal. Gute Heimreise!" }
+                ]
+            }
+        ];
+
+        function getEventStyle(type) {
+            const styles = {
+                'food': 'bg-rose-100 text-rose-600 border-rose-200',
+                'activity': 'bg-blue-100 text-blue-600 border-blue-200',
+                'transport': 'bg-emerald-100 text-emerald-600 border-emerald-200',
+                'accommodation': 'bg-amber-100 text-amber-600 border-amber-200'
+            };
+            return styles[type] || 'bg-slate-100 text-slate-600 border-slate-200';
+        }
+
+        function renderItinerary() {
+            const container = document.getElementById('itinerary-container');
+            container.innerHTML = itineraryData.map((day, dayIndex) => `
+                <div class="relative">
+                    <div class="sticky top-20 z-40 bg-[#f8f9fa]/90 backdrop-blur-md py-3 mb-6">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full ${day.bgColor} ${day.dateColor} font-bold text-sm border border-current/10">
+                            <i class="fas fa-calendar"></i>
+                            ${day.day} — ${day.title}
+                        </div>
+                    </div>
+                    <div class="ml-4 md:ml-8 border-l-2 border-slate-200 relative pb-4">
+                        ${day.events.map((event, eventIndex) => `
+                            <div class="mb-8 relative pl-8 md:pl-10 group">
+                                <div class="absolute -left-[17px] top-1 w-8 h-8 rounded-full border-4 border-[#f8f9fa] flex items-center justify-center ${getEventStyle(event.type)} shadow-sm transition-transform group-hover:scale-125">
+                                    <i class="${event.icon}"></i>
+                                </div>
+                                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md hover:border-slate-200 transition-all">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+                                        <h4 class="font-bold text-slate-800 text-lg">${event.title}</h4>
+                                        <span class="inline-flex items-center gap-1 bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg text-xs font-bold w-fit">
+                                            <i class="fas fa-clock"></i> ${event.time} Uhr
+                                        </span>
+                                    </div>
+                                    <p class="text-slate-600 text-sm leading-relaxed">${event.desc}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderPacking() {
+            const container = document.getElementById('packing-container');
+            container.innerHTML = packingList.map(category => `
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                    <div class="bg-slate-50/80 px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+                        <h3 class="font-bold text-slate-800">${category.category}</h3>
+                        <span class="text-xs font-medium text-slate-400 bg-white px-2 py-1 rounded-md border border-slate-200">
+                            <span class="checked-count-${category.id}">0</span> / ${category.items.length}
+                        </span>
+                    </div>
+                    <div class="p-2">
+                        ${category.items.map((item, itemIndex) => `
+                            <button onclick="toggleItem('${category.id}', ${itemIndex})" class="w-full flex items-center gap-4 p-3 hover:bg-slate-50 rounded-xl transition-colors focus:outline-none group item-${category.id}-${itemIndex}">
+                                <div class="shrink-0 flex items-center justify-center w-6 h-6 rounded-md border transition-colors border-slate-300 bg-white group-hover:border-orange-400 checkbox-${category.id}-${itemIndex}">
+                                    <i class="fas fa-check hidden check-icon-${category.id}-${itemIndex}"></i>
+                                </div>
+                                <span class="text-left text-sm transition-all text-slate-700 font-medium text-${category.id}-${itemIndex}">${item.text}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleItem(categoryId, itemIndex) {
+            const category = packingList.find(c => c.id === categoryId);
+            if (category) {
+                category.items[itemIndex].checked = !category.items[itemIndex].checked;
+                updatePacking();
+            }
+        }
+
+        function updatePacking() {
+            packingList.forEach(category => {
+                category.items.forEach((item, itemIndex) => {
+                    const checkbox = document.querySelector(`.checkbox-${category.id}-${itemIndex}`);
+                    const text = document.querySelector(`.text-${category.id}-${itemIndex}`);
+                    const checkIcon = document.querySelector(`.check-icon-${category.id}-${itemIndex}`);
+                    
+                    if (item.checked) {
+                        checkbox.classList.add('bg-emerald-500', 'border-emerald-500', 'text-white');
+                        checkbox.classList.remove('border-slate-300', 'bg-white');
+                        checkIcon.classList.remove('hidden');
+                        text.classList.add('text-slate-400', 'line-through');
+                        text.classList.remove('text-slate-700', 'font-medium');
+                    } else {
+                        checkbox.classList.remove('bg-emerald-500', 'border-emerald-500', 'text-white');
+                        checkbox.classList.add('border-slate-300', 'bg-white');
+                        checkIcon.classList.add('hidden');
+                        text.classList.remove('text-slate-400', 'line-through');
+                        text.classList.add('text-slate-700', 'font-medium');
+                    }
+                });
+                
+                const checked = category.items.filter(i => i.checked).length;
+                const countEl = document.querySelector(`.checked-count-${category.id}`);
+                if (countEl) countEl.textContent = checked;
+            });
+            
+            updateProgress();
+        }
+
+        function updateProgress() {
+            let total = 0, checked = 0;
+            packingList.forEach(c => {
+                c.items.forEach(i => {
+                    total++;
+                    if (i.checked) checked++;
+                });
+            });
+            
+            const percent = total === 0 ? 0 : Math.round((checked / total) * 100);
+            document.getElementById('progress-percent').textContent = percent + '%';
+            document.getElementById('progress-bar').style.width = percent + '%';
+        }
+
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-orange-600', 'shadow-sm');
+                btn.classList.add('bg-white/10', 'text-orange-50', 'hover:bg-white/20');
+            });
+            
+            document.getElementById(tabName).classList.remove('hidden');
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('bg-white', 'text-orange-600', 'shadow-sm');
+            document.querySelector(`[data-tab="${tabName}"]`).classList.remove('bg-white/10', 'text-orange-50', 'hover:bg-white/20');
+        }
+
+        // Initialize
+        renderItinerary();
+        renderPacking();
+        updateProgress();
+    </script>
+</body>
 </html>
